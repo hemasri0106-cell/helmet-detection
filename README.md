@@ -15,4 +15,3 @@ NumPy, Matplotlib
 PIL (Image handling)
 Model: YOLOv3 (Darknet configuration)
 
-IDE/Environment: VS Code / Google Colab
