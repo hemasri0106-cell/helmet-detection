@@ -1,17 +1,19 @@
-Project Overview:
-This project uses YOLOv3 (You Only Look Once) — a real-time object detection algorithm — to detect motorcyclists and check whether they are wearing helmets.
-The system can automatically analyze road surveillance footage or traffic images to identify helmet violations, helping enhance traffic safety and law enforcement.
+# ⛑️ Helmet Detection Project
 
-Objective
-Detect motorbike riders using computer vision.
-Identify whether the rider is wearing a helmet.
-Mark or alert cases where no helmet is detected.
+A rapid prototype built with Python and OpenCV to detect safety helmets in images. This project uses a pre-trained Haar Cascade classifier to perform real-time object detection.
 
-Tech Stack
-Language: Python
-Frameworks/Libraries:
-OpenCV (Computer Vision)
-NumPy, Matplotlib
-PIL (Image handling)
-Model: YOLOv3 (Darknet configuration)
+## Problem Statement
+
+In high-risk environments like construction sites or road traffic, failing to wear a safety helmet is a major cause of severe head injuries. This project aims to build a simple, automated system to detect the presence of helmets, providing a first step toward enforcing safety compliance.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Language:** Python
+* **Core Library:** OpenCV (Open Source Computer Vision)
+* **ML Model:** Haar Cascade Classifier
+* **Model File:** `haarcascade_helmet.xml` (A pre-trained classifier for helmet detection)
+
+
 
