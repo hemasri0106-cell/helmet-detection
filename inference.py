@@ -45,26 +45,7 @@ except Exception as e:
     print(f"[INIT-ERROR] Could not load model from {config.MODEL_PATH}. Error: {e}")
     traceback.print_exc()
 
-# --- STARTUP BENCHMARK ---
-if model is not None:
-    print("\n--- RUNNING STARTUP BENCHMARK ---")
-    try:
-        bm_start = time.time()
-        dummy_img = np.zeros((416, 416, 3), dtype=np.uint8)
-        
-        bm_infer_start = time.time()
-        _ = model.predict(source=dummy_img, imgsz=416, conf=0.4, save=False, verbose=False)
-        bm_infer_time = time.time() - bm_infer_start
-        
-        bm_total_time = time.time() - bm_start
-        print(f"✅ Startup benchmark passed!")
-        print(f"   -> Inference Time: {bm_infer_time:.4f}s")
-        print(f"   -> Total Benchmark Time: {bm_total_time:.4f}s")
-        print(f"   -> Memory after benchmark: {get_memory_mb():.2f} MB")
-    except Exception as e:
-        print(f"❌ Startup benchmark failed! The server environment may be broken.")
-        traceback.print_exc()
-    print("---------------------------------\n")
+
 
 def get_prediction_summary(results):
     with_helmet_count = 0
