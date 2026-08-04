@@ -1,0 +1,23 @@
+{
+    "Busy Market.mp4": {
+        "Frames Processed": 168,
+        "Helmet Detections": 662,
+        "No Helmet Detections": 176,
+        "Average Confidence": "0.50",
+        "Inference Time": "24.8s"
+    },
+    "City Road Ride.mp4": {
+        "Frames Processed": 210,
+        "Helmet Detections": 372,
+        "No Helmet Detections": 23,
+        "Average Confidence": "0.49",
+        "Inference Time": "28.7s"
+    },
+    "Highway Ride.mp4": {
+        "Frames Processed": 175,
+        "Helmet Detections": 378,
+        "No Helmet Detections": 11,
+        "Average Confidence": "0.57",
+        "Inference Time": "25.7s"
+    }
+}

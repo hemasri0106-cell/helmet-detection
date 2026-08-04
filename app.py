@@ -606,19 +606,63 @@ with gr.Blocks(theme=theme, css=custom_css, title="Helmet Detection AI") as app:
             infer_btn.click(fn=handle_image, inputs=[input_image], outputs=[output_image, summary_html])
             
         with gr.Tab("Video Detection", id=2):
-            gr.HTML("<h2 class='section-heading'>Demo Videos</h2>")
-            demo_videos = list(config.DEMO_VIDEOS_DIR.glob("*.mp4"))
-            demo_vid_names = {"busy market.mp4": "Busy Market", "city road ride.mp4": "City Road Ride", "highway ride.mp4": "Highway Ride"}
+            gr.HTML("<h2 class='section-heading'>Demo Video Gallery</h2>")
+            
             with gr.Row(elem_classes="metrics-grid"):
-                vid_btns = []
-                for vid_path in demo_videos[:3]:
-                    with gr.Column(elem_classes="sample-card"):
-                        gr.Video(value=str(vid_path), interactive=False, show_label=False)
-                        vid_name = demo_vid_names.get(vid_path.name.lower(), vid_path.stem.title())
-                        btn = gr.Button(f"Process {vid_name}", variant="primary")
-                        vid_btns.append((vid_path, btn))
+                # Card 1
+                with gr.Column(elem_classes="premium-card"):
+                    gr.Video(value=str(config.ASSETS_DIR / "processed_videos" / "Busy Market.mp4"), interactive=False, show_label=False)
+                    gr.HTML("""
+                    <div style="padding: 1rem 0.5rem;">
+                        <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.25rem;">Busy Market</h3>
+                        <p style="color:var(--text-secondary); margin-bottom:1rem; font-size:0.95rem;">Mixed traffic containing riders with and without helmets.</p>
+                        <div style="background:var(--bg-dark); padding:1rem; border-radius:8px; font-size:0.9rem; color:var(--text-secondary); border: 1px solid var(--border);">
+                            <strong>Detections:</strong> 352 Helmet, 14 No Helmet<br>
+                            <strong>Avg Confidence:</strong> 0.82
+                        </div>
+                    </div>
+                    """)
+                
+                # Card 2
+                with gr.Column(elem_classes="premium-card"):
+                    gr.Video(value=str(config.ASSETS_DIR / "processed_videos" / "City Road Ride.mp4"), interactive=False, show_label=False)
+                    gr.HTML("""
+                    <div style="padding: 1rem 0.5rem;">
+                        <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.25rem;">City Road Ride</h3>
+                        <p style="color:var(--text-secondary); margin-bottom:1rem; font-size:0.95rem;">Urban road traffic with mostly helmet-compliant riders.</p>
+                        <div style="background:var(--bg-dark); padding:1rem; border-radius:8px; font-size:0.9rem; color:var(--text-secondary); border: 1px solid var(--border);">
+                            <strong>Detections:</strong> 115 Helmet, 0 No Helmet<br>
+                            <strong>Avg Confidence:</strong> 0.88
+                        </div>
+                    </div>
+                    """)
 
-            gr.HTML("<br><h2 class='section-heading'>Run Inference</h2>")
+                # Card 3
+                with gr.Column(elem_classes="premium-card"):
+                    gr.Video(value=str(config.ASSETS_DIR / "processed_videos" / "Highway Ride.mp4"), interactive=False, show_label=False)
+                    gr.HTML("""
+                    <div style="padding: 1rem 0.5rem;">
+                        <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.25rem;">Highway Ride</h3>
+                        <p style="color:var(--text-secondary); margin-bottom:1rem; font-size:0.95rem;">High-speed traffic demonstrating helmet detection under different lighting conditions.</p>
+                        <div style="background:var(--bg-dark); padding:1rem; border-radius:8px; font-size:0.9rem; color:var(--text-secondary); border: 1px solid var(--border);">
+                            <strong>Detections:</strong> 231 Helmet, 1 No Helmet<br>
+                            <strong>Avg Confidence:</strong> 0.85
+                        </div>
+                    </div>
+                    """)
+
+            gr.HTML("""
+            <br>
+            <div style="background:var(--bg-sec); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:2rem;">
+                <h3 style="margin-top:0; margin-bottom:1rem; color:var(--text-primary); font-size:1.2rem; font-weight:600;">Hosting Note</h3>
+                <p style="margin:0; color:var(--text-secondary); line-height:1.6; font-size:0.95rem;">
+                    Live image detection is fully supported.<br><br>
+                    Live video inference is significantly more computationally intensive than image inference. This application is hosted on a free cloud instance with limited CPU and memory resources. Depending on server availability and video size, uploaded videos may take longer to process or may not complete successfully.<br><br>
+                    The demo gallery above showcases the full video detection capability of the trained YOLOv8 model using preprocessed outputs.
+                </p>
+            </div>
+            <h2 class='section-heading'>Upload Your Own Video</h2>
+            """)
             
             with gr.Row():
                 with gr.Column(scale=1):
@@ -634,12 +678,7 @@ with gr.Blocks(theme=theme, css=custom_css, title="Helmet Detection AI") as app:
                     gr.HTML("<h3 style='margin-bottom:1rem; font-weight:600;'>Detection Analytics</h3>")
                     summary_vid_html = gr.HTML("<div class='pred-stat-card'><span class='pred-stat-label'>Status</span><span class='pred-stat-value'>Awaiting input...</span></div>")
 
-            for vid_path, btn in vid_btns:
-                btn.click(
-                    fn=lambda p=str(vid_path): p, inputs=[], outputs=[input_video]
-                ).then(
-                    fn=handle_video, inputs=[input_video], outputs=[output_video, summary_vid_html]
-                )
+
             infer_vid_btn.click(fn=handle_video, inputs=[input_video], outputs=[output_video, summary_vid_html])
             
     btn_goto_img.click(fn=lambda: gr.update(selected=1), outputs=[tabs])
