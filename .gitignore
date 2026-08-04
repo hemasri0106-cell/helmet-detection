@@ -1,0 +1,41 @@
+# Python environments & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# IDE configurations
+.vscode/
+.idea/
+*.swp
+
+# Datasets
+dataset/
+dataset_original/
+
+# Generated Outputs & Cache
+output/
+assets/cache/
+
+# Documentation & BI Binaries
+*.pbix
+*.docx
+
+# Base YOLO model
+yolov8n.pt
+
+# YOLO Runs - Ignore all runs EXCEPT train2
+runs/*
+!runs/detect/
+runs/detect/*
+!runs/detect/train2/
+
+# Unused/Duplicate Root Media Assets
+/bus.jpg
+/image10.jpg
+/test.jpg
+/in_traffic.mp4
+/traffic_video.mp4
+/video_with_helmets.mp4
