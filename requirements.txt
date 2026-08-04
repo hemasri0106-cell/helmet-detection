@@ -1,5 +1,8 @@
+gradio>=5.0.0
 ultralytics
-gradio
-opencv-python
+opencv-python-headless
 numpy
 torch
+torchvision
+pillow
+pandas

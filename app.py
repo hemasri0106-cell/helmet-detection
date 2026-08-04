@@ -652,4 +652,7 @@ with gr.Blocks(theme=theme, css=custom_css, title="Helmet Detection AI") as app:
     """)
 
 if __name__ == "__main__":
-    app.launch()
+    app.launch(
+        server_name="0.0.0.0",
+        server_port=7860
+    )
