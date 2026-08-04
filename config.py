@@ -29,7 +29,7 @@ PROJECT_INFO = {
     "Epochs": "10",
     "Image Size": "416 × 416",
     "Classes": "2 Detection Classes",
-    "Dataset": "Traffic Footage"
+    "Dataset": "Helmet Detection Dataset"
 }
 
 # Classes
